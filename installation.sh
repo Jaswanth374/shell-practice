@@ -1,6 +1,6 @@
 #!/bin/bash
 userid=$(id -u)
-if [$userid -ne 0]; then
+if [$userid -e 0]; then
 echo "print the exit code:: $?"
 dnf install nginx
 else
