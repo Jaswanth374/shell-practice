@@ -10,5 +10,5 @@ Fruits=("Apple" "Banana" "Mango")
 
 echo "Fruits are: ${Fruits[@]}"
 echo "First fruit is :: ${Fruits[0]}"
-echo "Second Fruit is:: ${Fruit[1]}"
-echo "Third Fruit is:: ${Fruit[2]}"
+echo "Second Fruit is:: ${Fruits[1]}"
+echo "Third Fruit is:: ${Fruits[2]}"
