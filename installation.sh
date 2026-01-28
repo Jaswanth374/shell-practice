@@ -1,4 +1,5 @@
 #!/bin/bash
+username=$USER
 userid=$(id -u)
 echo "print the user id:: $userid"
 if [ $userid -eq 0 ]; then
