@@ -6,7 +6,7 @@ Total=$(($Num1 + $Num2))
 echo "Total value is :: $Total"
 
 #Arrays
-Furits=("Apple" "Banana" "Mango")
+Fruits=("Apple" "Banana" "Mango")
 
 echo "Fruits are: ${Fruits[@]}"
 echo "First fruit is :: ${Fruits[0]}"
