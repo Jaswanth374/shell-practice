@@ -1,7 +1,8 @@
 #!/bin/bash
 userid=$(id -u)
-echo "print the exit code:: $?"
+echo "print the user id:: $userid"
 if [ $userid -eq 0 ]; then
+echo "print the exit code:: $?"
 dnf install nginx -y
 exit 1
 else
