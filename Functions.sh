@@ -4,7 +4,7 @@
 R='\e[0;31m'
 G='\e[0;32m'
 N='\e[0m'
-SOFTWARE=(nginx, mysql)
+SOFTWARE=(nginx mysql)
 userid=$(id -u)
 if [ $userid -ne 0 ]; then
 echo -e "$R User is not having root access to install $N"
@@ -21,7 +21,7 @@ FUNC(){
     fi
 }
 
-for status in $SOFTWARE;
+for status in "${SOFTWARE[@]}";
 do
 dnf list installed $status
 if [ $? -ne 0 ]; then
@@ -33,5 +33,6 @@ systemctl stop $status
 systemctl disable $status
 dnf remove $status
 dnf install $status -y
-done
 FUNC $? "Installing the $status"
+fi
+done
