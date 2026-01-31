@@ -6,10 +6,10 @@ G='\e[0;32m'
 N='\e[0m'
 userid=$(id -u)
 if [ $userid -ne 0 ]; then
-echo "${R} User is not having root access to install ${N}"
+echo -e "$R User is not having root access to install $N"
 exit 1
 else
-echo "$G User have access to install required softwares $N"
+echo -e "$G User have access to install required softwares $N"
 fi
 
 FUNC(){
