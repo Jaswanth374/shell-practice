@@ -25,17 +25,17 @@ FUNC(){
 
 for SOFTWARE in "$@";
 do
-dnf list installed $SOFTWARE &>>$LOG_FILE
+dnf list installed $SOFTWARE &>>$LOGS_FILE
 if [ $? -ne 0 ]; then
 echo -e "$G No $SOFTWARE software available $N... Proceed with a clean installation" | tee -a $LOGS_FILE
-dnf install $SOFTWARE -y &>>$LOG_FILE
+dnf install $SOFTWARE -y  &>>$LOGS_FILE
 FUNC $? "Installing $software"
 else
 echo -e "$R $SOFTWARE software available $N... Proceed with a removal and go with installation again" | tee -a $LOGS_FILE
-systemctl stop $SOFTWARE &>>$LOG_FILE
-systemctl disable $SOFTWARE &>>$LOG_FILE
-dnf remove $SOFTWARE &>>$LOG_FILE
-dnf install $SOFTWARE -y &>>$LOG_FILE
+systemctl stop $SOFTWARE &>>$LOGS_FILE
+systemctl disable $SOFTWARE &>>$LOGS_FILE
+dnf remove $SOFTWARE &>>$LOGS_FILE
+dnf install $SOFTWARE -y &>>$LOGS_FILE
 FUNC $? "re-installing $SOFTWARE"
 fi
 done
