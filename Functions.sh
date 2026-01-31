@@ -8,7 +8,7 @@ else
 echo "User have access to install required softwares"
 fi
 
-FUNC() {
+FUNC(){
     if [ $1 -ne 0 ]; then
     echo "$2 ----> SUCCESS"
     else
