@@ -21,7 +21,7 @@ FUNC(){
     fi
 }
 
-for status in $SOFTWARE
+for status in $SOFTWARE;
 do
 dnf list installed $status
 if [ $? -ne 0 ]; then
