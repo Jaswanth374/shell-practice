@@ -4,6 +4,7 @@
 R='\e[0;31m'
 G='\e[0;32m'
 N='\e[0m'
+SOFTWARE=(nginx, mysql)
 userid=$(id -u)
 if [ $userid -ne 0 ]; then
 echo -e "$R User is not having root access to install $N"
@@ -14,13 +15,23 @@ fi
 
 FUNC(){
     if [ $1 -ne 0 ]; then
-    echo "$2 ----> $R FAILURE $N"
+    echo -e "$2 ----> $R FAILURE $N"
     else
-    echo "$2 ----> $G SUCCESS $N"
+    echo -e "$2 ----> $G SUCCESS $N"
     fi
 }
 
-dnf install nginx -y
-FUNC $? "Installing the nginx"
-dnf install mysql -y
-FUNC $? "Installing the mysql"
+for status in $SOFTWARE
+do
+dnf list installed $status
+if [ $? -ne 0 ]; then
+echo -e "$G No $status software available $N... Proceed with a clean installation"
+dnf install $status -y
+else
+echo -e "$R $status software available $N... Proceed with a removal and go with installation again"
+systemctl stop $status
+systemctl disable $status
+dnf remove $status
+dnf install $status -y
+done
+FUNC $? "Installing the $status"
