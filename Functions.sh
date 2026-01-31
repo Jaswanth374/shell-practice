@@ -4,7 +4,6 @@
 R='\e[0;31m'
 G='\e[0;32m'
 N='\e[0m'
-SOFTWARE=(nginx mysql)
 userid=$(id -u)
 if [ $userid -ne 0 ]; then
 echo -e "$R User is not having root access to install $N"
@@ -21,18 +20,19 @@ FUNC(){
     fi
 }
 
-for status in "${SOFTWARE[@]}";
+for SOFTWARE in "$@";
 do
-dnf list installed $status
+dnf list installed $SOFTWARE
 if [ $? -ne 0 ]; then
-echo -e "$G No $status software available $N... Proceed with a clean installation"
-dnf install $status -y
+echo -e "$G No $SOFTWARE software available $N... Proceed with a clean installation"
+dnf install $SOFTWARE -y
+FUNC $? "Installing $software"
 else
-echo -e "$R $status software available $N... Proceed with a removal and go with installation again"
-systemctl stop $status
-systemctl disable $status
-dnf remove $status
-dnf install $status -y
-FUNC $? "Installing the $status"
+echo -e "$R $SOFTWARE software available $N... Proceed with a removal and go with installation again"
+systemctl stop $SOFTWARE
+systemctl disable $SOFTWARE
+dnf remove $SOFTWARE
+dnf install $SOFTWARE -y
+FUNC $? "re-installing $SOFTWARE"
 fi
 done
