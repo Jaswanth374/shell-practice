@@ -31,7 +31,7 @@ else
 echo -e "$R $SOFTWARE software available $N... Proceed with a removal and go with installation again"
 systemctl stop $SOFTWARE
 systemctl disable $SOFTWARE
-dnf remove $SOFTWARE
+dnf remove $SOFTWARE -y
 dnf install $SOFTWARE -y
 FUNC $? "re-installing $SOFTWARE"
 fi
