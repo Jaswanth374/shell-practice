@@ -54,4 +54,4 @@ else
     exit 1
 fi
 
-echo "----- Job completed at $(date) -----" >> "$JOB_LOG"
+echo -e "----- Job completed at $(date) -----" >> "$JOB_LOG"
